@@ -5,6 +5,7 @@ using OOP.Override;
 using OOP.SOLID.Odeme_Yontemi_Kotu;
 using OOP.SOLID.Open_Closed_Kotu;
 using System.Collections;
+using System.Reflection;
 
 Console.WriteLine("Hello, World!");
 
@@ -195,4 +196,43 @@ ode.OdemeYap(400);
 
 OdemeIslemi mail = new OdemeIslemi(mailoerder);
 //mailoerder.Od
+
+//11.08.2022
+
+Type t = typeof(MyClass);
+MethodInfo[] mi = t.GetMethods();
+Console.WriteLine("Nesnenin Adı: " + t.Name);
+
+foreach(MethodInfo info in mi)
+{
+    ParameterInfo[] pi = info.GetParameters();
+    Console.WriteLine("Metot Adı: " + info.Name + " Donüş Tipi" + info.ReturnType);
+    if(pi.Length >0)
+    {
+        Console.WriteLine("parametre var");
+    }
+
+    for (int iX = 0; iX < pi.Length; iX++)
+    {
+        Console.WriteLine(iX+1 + " .parametre : Donüş değeri " + pi[iX].ParameterType.Name + " Adı" + pi[iX].Name);
+    }
+
+}
+
+
+
+
+Calisan calisan =  new Calisan();
+calisan.GetType().GetMethods().ToList().ForEach(method =>
+{
+    if (method.Name == "CostSalary")
+    {
+    var Sonuc = method.Invoke(calisan, new object[] { 3, 5});
+        Console.WriteLine("Maaşı :" + Sonuc);
+
+    }
+});
+
+
+//
 

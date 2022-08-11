@@ -10,6 +10,8 @@ namespace OOP
     {
         public int maas;
 
+        
+
         public abstract int MaasinizNedir();
 
         public void MesaiyeBasla()
